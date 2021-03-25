@@ -13,6 +13,14 @@ from sqlalchemy.types import INTEGER, BIGINT, SMALLINT, VARCHAR, CHAR, \
     NUMERIC, FLOAT, REAL, DATE, DATETIME, BOOLEAN, BLOB, TIMESTAMP, TIME
 from sqlalchemy.sql import sqltypes
 
+def TIMESTAMP_WITH_TIMEZONE(*args, **kwargs):
+    kwargs['timezone'] = True
+    return TIMESTAMP(*args, **kwargs)
+
+def TIME_WITH_TIMEZONE(*args, **kwargs):
+    kwargs['timezone'] = True
+    return TIME(*args, **kwargs)
+
 ischema_names = {
     'INT': INTEGER,
     'INTEGER': INTEGER,
@@ -34,10 +42,10 @@ ischema_names = {
     'DOUBLE': DOUBLE_PRECISION,
     'TIMESTAMP': TIMESTAMP,
     'TIMESTAMP WITH TIMEZONE': TIMESTAMP,
-    'TIMESTAMPTZ': TIMESTAMP(timezone=True),
+    'TIMESTAMPTZ': TIMESTAMP_WITH_TIMEZONE,
     'TIME': TIME,
     'TIME WITH TIMEZONE': TIME,
-    'TIMETZ': TIME(timezone=True),
+    'TIMETZ': TIME_WITH_TIMEZONE,
     'INTERVAL': INTERVAL,
     'DATE': DATE,
     'DATETIME': DATETIME,
